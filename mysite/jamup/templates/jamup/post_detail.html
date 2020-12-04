@@ -1,0 +1,47 @@
+{% extends "base_menu.html" %}
+{% load humanize %} <!-- https://docs.djangoproject.com/en/3.0/ref/contrib/humanize -->
+{% block content %}
+<span style="float: right;">
+({{ post.updated_at|naturaltime }})
+{% if post.owner == user %}
+<a href="{% url 'jamup:post_update' post.id %}"><i class="fa fa-pencil"></i></a>
+<a href="{% url 'jamup:post_delete' post.id %}"><i class="fa fa-trash"></i></a>
+{% endif %}
+</span>
+<div class="title_by">
+    <h1>{{ post.title }}</h1>
+    <p>By: <a href = "{% url 'jamup:profile_detail' post.owner.profile.user.id %}">{{post.owner}}</a></p>
+</div>
+<div class="post post_deets">
+    <div class="post_content post_text">
+        <p>Location: {{ post.city }}, {{ post.state }}</p>
+        <p>Reason: {{ post.reason }}</p>
+        <p>{{ post.text }}</p>
+    </div>
+</div>
+<div class="post" id="post_replies">
+    <h2>Replies</h2>
+    {% for reply in replies %}
+    <p> {{ reply.text }}
+    ({{ reply.updated_at|naturaltime }})
+    {% if user == reply.owner %}
+    <a href="{% url 'jamup:post_reply_delete' reply.id %}"><i class="fa fa-trash" style="color:black"></i></a>
+    {% endif %}
+    </p>
+    {% endfor %}
+</div>
+{% if user.is_authenticated %}
+<br clear="all"/>
+<p>
+{% load crispy_forms_tags %}
+<form method="post" action="{% url 'jamup:post_reply_create' post.id %}">
+    {% csrf_token %}
+    {{ reply_form|crispy }}
+<input type="submit" value="Submit">
+</form>
+</p>
+{% endif %}
+<p>
+<a class="main_link" href="{% url 'jamup:all' %}">All posts</a>
+</p>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base_menu.html" %}
+{% block content %}
+<h1>Messages</h1>
+<div style="float:right">
+<!-- https://www.w3schools.com/howto/howto_css_search_button.asp -->
+<form>
+  <input type="text" placeholder="Search.." name="search"
+  {% if search %} value="{{ search }}" {% endif %}
+  >
+  <button type="submit"><i class="fa fa-search"></i></button>
+<a href="{% url 'jamup:my_messages' %}"><i class="fa fa-undo"></i></a>
+</form>
+</div>
+{% if user.is_authenticated %}
+{% if user.profile %}
+<p><a class="main_link" href="{% url 'jamup:message_create' %}">Send a Message</a></p>
+{% else %}
+<p><a class="main_link" href="{% url 'jamup:profile_create' %}">Create a profile before sending a message</a></p>
+{% endif %}
+{% endif %}
+<p>
+{%if user.is_authenticated and user.profile %}
+{% if message_list %}
+<div>
+    {% for message in message_list %}
+    {% if message.sender == user or message.recipient == user %}
+        <div class="post">
+            <div class="post_main post_content">
+                {% if message.sender == user %}
+                <p>From: You | To: <a href="{% url 'jamup:profile_detail'  message.recipient.id %}">{{ message.recipient }}</a></p>
+                {% else %}
+                <p>From: <a href="{% url 'jamup:profile_detail'  message.sender.id %}">{{ message.sender }}</a> | To: You</p>
+                {% endif %}
+                <p>{{ message.text }}</p>
+                <p style="color:black">
+                    (<a href="{% url 'jamup:message_delete' message.id %}">Delete</a>)
+                </p>
+            </div>
+        </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% else %}
+<p>You have not sent or received any messages yet!</p>
+{% endif %}
+</p>
+{% else %}
+<p>Log in and create a profile to send and receive messages</p>
+{% endif %}
+<p>
+{% if user.is_authenticated %}
+<a class="main_link" href="{% url 'logout' %}?next={% url 'jamup:all' %}">Logout</a>
+{% else %}
+<a class="main_link" href="{% url 'login' %}?next={% url 'jamup:all' %}">Login</a>
+{% endif %}
+</p>
+{% endblock %}

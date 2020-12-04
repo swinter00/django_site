@@ -1,0 +1,74 @@
+{% extends "base_menu.html" %}
+{% load humanize %} <!-- https://docs.djangoproject.com/en/3.0/ref/contrib/humanize -->
+{% block content %}
+<style>
+.overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: none;
+  background-color: rgba(0,0,0,0.5); /*dim the background*/
+}
+</style>
+{% if profile.content_type %}
+<div id="overlay" class="overlay" style="text-align: center;"
+   onclick="document.getElementById('overlay').style.display = 'none';" >
+<img style="width:90%;margin-top: 50px; border:3px solid black;" src="{% url 'jamup:profile_picture' profile.id %}">
+</div>
+{% endif %}
+<span style="float: right;">
+(Updated {{ profile.updated_at|naturaltime }})
+{% if profile.user == user %}
+<a href="{% url 'jamup:profile_update' profile.id %}"><i class="fa fa-pencil"></i></a>
+<a href="{% url 'jamup:profile_delete' profile.id %}"><i class="fa fa-trash"></i></a>
+{% endif %}
+</span>
+<div class="pic_surround">
+    {% if profile.content_type %}
+    <img class="prof_pic" src="{% url 'jamup:profile_picture' profile.id %}"
+    onclick="document.getElementById('overlay').style.display = 'block';">
+    {% endif %}
+    <div class="info1">
+        <h1>{{ profile.name }}</h1>
+        <p>Username: {{ profile.user }}</p>
+        <p>Location: {{ profile.city }}, {{ profile.state }}</p>
+    </div>
+</div>
+<div class="info2">
+    <div class="prof_content">
+        <h2>Bio</h2>
+        <p>{{ profile.bio }}</p>
+        <br>
+        <p>Genres: {{profile.genres}}</p>
+        <p>Instruments: {{ profile.instruments }}</p>
+    </div>
+</div>
+<div class="post">
+    <div class="post_main">
+        <h2>Submitted Posts</h2>
+        <div class="post_content">
+            {% if posts %}
+            {% for post in posts %}
+            <p><a href="{% url 'jamup:post_detail' post.id %}">{{ post.title }}</a>
+            ({{ post.updated_at|naturaltime }})
+            {% if user == post.owner %}
+            <a href="{% url 'jamup:post_delete' post.id %}"><i class="fa fa-trash prof_del"></i></a>
+            {% endif %}
+            </p>
+            {% endfor %}
+            {% else %}
+            <p>This user has not made any posts</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<p>
+<a class="main_link" href="{% url 'jamup:all' %}">Home</a>
+</p>
+<p>
+<a class="main_link" href="{% url 'jamup:all_profiles' %}">All Profiles</a>
+</p>
+{% endblock %}

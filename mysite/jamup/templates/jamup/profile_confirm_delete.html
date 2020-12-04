@@ -1,0 +1,12 @@
+{% extends "base_menu.html" %}
+{% block content %}
+<h1>Delete Profile</h1>
+
+<p>Are you sure you want to delete your profile? This will delete all of your posts, replies, and profile information from the site,
+and it cannot be reversed.</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes, delete.">
+</form>
+{% endblock %}

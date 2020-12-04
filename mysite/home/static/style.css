@@ -1,0 +1,181 @@
+body {
+    background-color: #495464;
+}
+
+* {
+    color: #e8e8e8;
+    font-family: 'Noto Sans TC', sans-serif;;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: #ee6f57;
+}
+
+.main_link {
+    color: #f4f4f2;
+}
+
+input {
+    color: black;
+}
+
+.fa-search {
+    color: black;
+}
+
+.post {
+    width: 400px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #bbbfca;
+    border-radius: 10px;
+    border-color: #e8e8e8;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.post h3, .post_content p {
+    color: black;
+}
+
+.post_content {
+    width: 300px;
+    margin-left: 40px;
+}
+
+.post_main {
+    padding: 10px;
+    margin-left: 10px;
+}
+
+button {
+    border-radius: 10px;
+}
+
+input[type=text], #id_password {
+    border-radius: 10px;
+    padding-left: 5px;
+    background-color: #e8e8e8;
+}
+
+.container-fluid, .navbar {
+    background-color: #e8e8e8;
+    border-radius: 0 0 10px 10px;
+}
+
+.navbar-brand, .nav li a {
+    color: black !important;
+}
+
+.navbar-brand:hover, .nav li a:hover {
+    color: #ee6f57 !important;
+}
+
+.caret {
+    color: black;
+}
+
+.prof_pic {
+    width: 380px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #495464;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.info1 {
+    width: 380px;
+    margin-left: 10px;
+    text-align: center;
+    background-color: #495464;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+}
+
+.info1 h1, .info1 p {
+    color: #f4f4f2;
+}
+
+.pic_surround {
+    background-color: #e8e8e8;
+    width: 400px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+}
+
+.info2 {
+    background-color: #bbbfca;
+    width: 640px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    border-color: #e8e8e8;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.prof_content {
+    padding: 10px;
+    color: black;
+}
+
+.prof_content p, .prof_del, .post_main h2 {
+    color: black;
+}
+
+input[type=text], #id_city option, #id_state option, #id_reason option {
+    color: black !important;
+}
+
+.title_by {
+    text-align: center;
+    width: 800px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #bbbfca;
+    border-radius: 10px;
+    border-color: #e8e8e8;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.post_deets {
+    width: 800px;
+}
+
+.post_text {
+    width: 800px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.title_by h1, .title_by p {
+    color: black;
+}
+
+#post_replies {
+    width: 800px;
+}
+
+#post_replies h2 {
+    color: black !important;
+    margin-left: 30px;
+}
+
+#post_replies p {
+    margin-left: 50px;
+    color: black;
+}
+
+#id_recipient option {
+    color: black;
+}
+/* Palette: https://colorhunt.co/palette/212648 */
